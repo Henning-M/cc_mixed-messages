@@ -61,6 +61,11 @@ goodBye = [
 const getHappyB = (name, language, celebStyle) => {
     let bDayMessage = []; // Create array
     
+    if (typeof name !== 'string' || !['DE', 'EN'].includes(language) || !['party', 'chill'].includes(celebStyle)) {
+        console.log('Please use valid parameters only. Name takes any string, language accept DE or EN and for celebStyle use string party or string chill.');
+    } else {
+
+
     //PART 1 - GREET using parameters name, language
     let moduleGreet = []; // Create module for greeting
     const findName = (string) => string === 'NAME';
@@ -88,14 +93,18 @@ const getHappyB = (name, language, celebStyle) => {
     if (language === 'DE') {
         if (celebStyle === 'party') {
             moduleCelebStyle = celebrationStyle[0][0][Math.floor(Math.random()*3)]
-        } else {
+        } else if (celebStyle === 'chill') {
             moduleCelebStyle = celebrationStyle[0][1][Math.floor(Math.random()*3)]
+        } else {
+            moduleCelebStyle = celebrationStyle[0][Math.floor(Math.random()*1)][Math.floor(Math.random()*3)]
         }
     } else {
         if (celebStyle === 'party') {
             moduleCelebStyle = celebrationStyle[1][0][Math.floor(Math.random()*3)]
-        } else {
+        } else if (celebStyle === 'chill') {
             moduleCelebStyle = celebrationStyle[1][1][Math.floor(Math.random()*3)]
+        } else {
+            moduleCelebStyle = celebrationStyle[1][Math.floor(Math.random()*1)][Math.floor(Math.random()*3)]
         }
     };
     bDayMessage.push(moduleCelebStyle);
@@ -112,5 +121,5 @@ const getHappyB = (name, language, celebStyle) => {
     // console.log(bDayMessage);
     console.log(bDayMessage.join(' '));
 }
-
-getHappyB('Pupsi', 'DE', 'party');
+}
+getHappyB('Ina', 'DE', 'party');
